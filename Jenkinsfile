@@ -19,17 +19,22 @@ pipeline{
         }
         post{
             success{
-                mail to: "jpether@deakin.edu.au",
-                subject: "Jenkins Tests Build",
-                body: "Tests successfully completed",
-                emailext attachLog: true
+                   emailext(
+                        to: "jpether@deakin.edu.au",
+                        subject: "Jenkins Tests Build",
+                        body: "Tests successfully completed",
+                        attachLog: true
+                   )
+                
             }
 
             failure{
-                mail to: "jpether@deakin.edu.au",
-                subject: "Jenkins Build",
-                body: "Build Failed",
-                emailext attachLog: true
+                emailext(
+                    to: "jpether@deakin.edu.au",
+                    subject: "Jenkins Build",
+                    body: "Build Failed",
+                    attachLog: true
+                )
             }
         }
 
@@ -46,17 +51,20 @@ pipeline{
         }
         post{
             success{
-                mail to: "jpether@deakin.edu.au",
+                emailext(
+                to: "jpether@deakin.edu.au",
                 subject: "Jenkins Build",
                 body: "Security Scan Completed",
-                emailext attachLog: true
+                attachLog: true)
             }
 
             failure{
-                mail to: "jpether@deakin.edu.au",
+                emailext(
+                to: "jpether@deakin.edu.au",
                 subject: "Jenkins Build",
                 body: "Build Failed",
-                emailext attachLog: true
+                attachLog: true
+                )
             }
         }
 
