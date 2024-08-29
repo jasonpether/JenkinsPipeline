@@ -19,7 +19,7 @@ pipeline{
         post{
             success{
                    emailext(
-                        to: "jpether@deakin.edu.au",
+                        to: "petherjason@gmail,com",
                         subject: "Jenkins Tests Build",
                         body: "Tests successfully completed",
                         attachLog: true
@@ -28,7 +28,7 @@ pipeline{
             }
             failure{
                 emailext(
-                    to: "jpether@deakin.edu.au",
+                    to: "petherjason@gmail.com",
                     subject: "Jenkins Build",
                     body: "Build Failed",
                     attachLog: true
@@ -51,14 +51,14 @@ pipeline{
         post{
             success{
                 emailext(
-                to: "jpether@deakin.edu.au",
+                to: "petherjason@gmail.com",
                 subject: "Jenkins Build",
                 body: "Security Scan Completed",
                 attachLog: true)
             }
             failure{
                 emailext(
-                to: "jpether@deakin.edu.au",
+                to: "petherjason@gmail.com",
                 subject: "Jenkins Build",
                 body: "Build Failed",
                 attachLog: true
