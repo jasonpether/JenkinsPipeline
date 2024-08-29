@@ -16,7 +16,6 @@ pipeline{
             echo "integration tests"
             echo "use Selenium to test integration"
             }
-        }
         post{
             success{
                    emailext(
@@ -27,7 +26,6 @@ pipeline{
                    )
                 
             }
-
             failure{
                 emailext(
                     to: "jpether@deakin.edu.au",
@@ -38,6 +36,8 @@ pipeline{
             }
         }
 
+        }
+        
         stage('Code Quality Check'){
         steps{
             echo "Check the quality of the Code using PMD"
@@ -48,7 +48,6 @@ pipeline{
         steps{
             echo "run second code scan using SonarQube"
             }
-        }
         post{
             success{
                 emailext(
@@ -57,7 +56,6 @@ pipeline{
                 body: "Security Scan Completed",
                 attachLog: true)
             }
-
             failure{
                 emailext(
                 to: "jpether@deakin.edu.au",
@@ -67,6 +65,8 @@ pipeline{
                 )
             }
         }
+        }
+        
 
         stage('Deploy'){
         steps{
