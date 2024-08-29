@@ -17,6 +17,22 @@ pipeline{
             echo "use Selenium to test integration"
             }
         }
+        post{
+            success{
+                mail to: "jpether@deakin.edu.au",
+                subject: "Jenkins Tests Build",
+                body: "Tests successfully completed",
+                emailext attachLog: true
+            }
+
+            failure{
+                mail to: "jpether@deakin.edu.au",
+                subject: "Jenkins Build",
+                body: "Build Failed",
+                emailext attachLog: true
+            }
+        }
+
         stage('Code Quality Check'){
         steps{
             echo "Check the quality of the Code using PMD"
@@ -26,6 +42,21 @@ pipeline{
         stage('Security Scan'){
         steps{
             echo "run second code scan using SonarQube"
+            }
+        }
+        post{
+            success{
+                mail to: "jpether@deakin.edu.au",
+                subject: "Jenkins Build",
+                body: "Security Scan Completed",
+                emailext attachLog: true
+            }
+
+            failure{
+                mail to: "jpether@deakin.edu.au",
+                subject: "Jenkins Build",
+                body: "Build Failed",
+                emailext attachLog: true
             }
         }
 
