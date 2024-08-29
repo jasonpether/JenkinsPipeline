@@ -83,6 +83,7 @@ pipeline{
         stage('Deploy to Production'){
         steps{
             echo "Deploy application to production server's AWS Ec2 Instance"
+            echo "Deployment done!"
             }
         }
     }
