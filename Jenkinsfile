@@ -18,6 +18,7 @@ pipeline{
             }
         post{
             success{
+                   echo "send test email"
                    emailext(
                         to:"petherjason@gmail.com",
                         subject: "Jenkins Tests Build",
