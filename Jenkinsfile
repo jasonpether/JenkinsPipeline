@@ -17,16 +17,23 @@ pipeline{
             echo "use Selenium to test integration"
             }
         post{
-            always{
-                   echo "send test email"
-                   emailext(body: 'TEST', subject: 'Jenkins Success', to: 'petherjason@gmail.com')
+            success{
+                    emailext(
+                    attachLog: true
+                    to:'petherjason@gmail.com',
+                    subject: 'Jenkins Build',
+                    body: 'Successful'
+                    from: 'petherjason@gmail.com')
+            }
                 
             }
             failure{
-                emailext(
+             emailext(
+                    attachLog: true
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
-                    body: 'Build Failed')
+                    body: 'Fail'
+                    from: 'petherjason@gmail.com')
             }
         }
 
@@ -42,20 +49,27 @@ pipeline{
         steps{
             echo "run second code scan using SonarQube"
             }
-        post{
+     post{
             success{
-                emailext(
-                to:"petherjason@gmail.com",
-                subject: "Jenkins Build",
-                body: "Security Scan Completed",)
+                    emailext(
+                    attachLog: true
+                    to:'petherjason@gmail.com',
+                    subject: 'Jenkins Build',
+                    body: 'Successful'
+                    from: 'petherjason@gmail.com')
+            }
+                
             }
             failure{
-                emailext(
-                to:'petherjason@gmail.com',
-                subject: 'Jenkins Build',
-                body: 'Build Failed',)
+             emailext(
+                    attachLog: true
+                    to:'petherjason@gmail.com',
+                    subject: 'Jenkins Build',
+                    body: 'Fail'
+                    from: 'petherjason@gmail.com')
             }
         }
+
         }
         
 
