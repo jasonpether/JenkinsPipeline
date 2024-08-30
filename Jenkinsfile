@@ -15,26 +15,7 @@ pipeline {
                 echo "Integration tests"
                 echo "Use Selenium for integration testing"
             }
-            post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Build Success',
-                        body: 'The build was successful.',
-                        from: 'petherjason@gmail.com'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Build Failure',
-                        body: 'The build failed.',
-                        from: 'petherjason@gmail.com'
-                    )
-                }
-            }
+
         }
          
         stage('Code Quality Check') {
@@ -47,26 +28,7 @@ pipeline {
             steps {
                 echo "Run security scan using SonarQube"
             }
-            post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Security Scan Success',
-                        body: 'The security scan was successful.',
-                        from: 'petherjason@gmail.com'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Security Scan Failure',
-                        body: 'The security scan failed.',
-                        from: 'petherjason@gmail.com'
-                    )
-                }
-            }
+
         }
         
         stage('Deploy to Staging') {
@@ -87,5 +49,26 @@ pipeline {
                 echo "Deployment done!"
             }
         }
+
+        post {
+                success {
+                    emailext(
+                        attachLog: true,
+                        to: 'petherjason@gmail.com',
+                        subject: 'Jenkins Security Scan Success',
+                        body: 'The security scan was successful.',
+                        from: 'petherjason@gmail.com'
+                    )
+                }
+                failure {
+                    emailext(
+                        attachLog: true,
+                        to: 'petherjason@gmail.com',
+                        subject: 'Jenkins Security Scan Failure',
+                        body: 'The security scan failed.',
+                        from: 'petherjason@gmail.com'
+                    )
+                }
+            }
     }
 }
