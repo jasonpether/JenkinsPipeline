@@ -49,7 +49,7 @@ pipeline {
                 echo "Deployment done!"
             }
         }
-
+    }
         post {
                 success {
                     emailext(
@@ -59,7 +59,8 @@ pipeline {
                         body: 'The security scan was successful.',
                         from: 'petherjason@gmail.com'
                     )
-                }
+                        }
+
                 failure {
                     emailext(
                         attachLog: true,
@@ -68,7 +69,6 @@ pipeline {
                         body: 'The security scan failed.',
                         from: 'petherjason@gmail.com'
                     )
-                }
-            }
+                        }
+        }
     }
-}
