@@ -1,39 +1,76 @@
-pipeline {
+pipeline{
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo "Building stage using build automation tool Maven"
+    stages{
+        stage('Build'){
+        steps{
+                echo "building stage using build automation tool Maven"
             }
         }
        
-        stage('Test') {
-            steps {
-                echo "Unit tests"
-                echo "Use JUnit Jenkins plugin for unit testing (assuming code is Java)"
-                echo "Integration tests"
-                echo "Use Selenium for integration testing"
-            }
+        stage('Test'){
+        steps{
+            echo "unit tests"
+            echo "use Junit Jenkins plugin to do unit testing (assumption code is testing Java)"
 
-        }
-         
-        stage('Code Quality Check') {
-            steps {
-                echo "Check the quality of the code using PMD"
+            echo "integration tests"
+            echo "use Selenium to test integration"
+            }
+        post{
+            success{
+                   emailext(
+                        to:"petherjason@gmail.com",
+                        subject: "Jenkins Tests Build",
+                        body: "Tests successfully completed",
+                        attachLog: true
+                   )
+                
+            }
+            failure{
+                emailext(
+                    to:"petherjason@gmail.com",
+                    subject: "Jenkins Build",
+                    body: "Build Failed",
+                    attachLog: true
+                )
             }
         }
-
-        stage('Security Scan') {
-            steps {
-                echo "Run security scan using SonarQube"
-            }
 
         }
         
-        stage('Deploy to Staging') {
-            steps {
-                echo "Deploy the application to staging server's AWS EC2 Instance"
+        stage('Code Quality Check'){
+        steps{
+            echo "Check the quality of the Code using PMD"
+            }
+        }
+
+        stage('Security Scan'){
+        steps{
+            echo "run second code scan using SonarQube"
+            }
+        post{
+            success{
+                emailext(
+                to:"petherjason@gmail.com",
+                subject: "Jenkins Build",
+                body: "Security Scan Completed",
+                attachLog: true)
+            }
+            failure{
+                emailext(
+                to:"petherjason@gmail.com",
+                subject: "Jenkins Build",
+                body: "Build Failed",
+                attachLog: true
+                )
+            }
+        }
+        }
+        
+
+        stage('Deploy'){
+        steps{
+            echo "deploy the application to staging server's AWS Ec2 Instance"
             }
         }
 
@@ -43,32 +80,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to Production') {
-            steps {
-                echo "Deploy application to production server's AWS EC2 Instance"
-                echo "Deployment done!"
+        stage('Deploy to Production'){
+        steps{
+            echo "Deploy application to production server's AWS Ec2 Instance"
+            echo "Deployment done!"
             }
         }
     }
-        post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Security Scan Success',
-                        body: 'The security scan was successful.',
-                        from: 'petherjason@gmail.com'
-                    )
-                        }
-
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'petherjason@gmail.com',
-                        subject: 'Jenkins Security Scan Failure',
-                        body: 'The security scan failed.',
-                        from: 'petherjason@gmail.com'
-                    )
-                        }
-        }
-    }
+}
