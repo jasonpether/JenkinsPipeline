@@ -22,7 +22,7 @@ pipeline{
                     attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
-                    body: 'Successful'
+                    body: 'Successful',
                     from: 'petherjason@gmail.com')
             }
                 
@@ -32,7 +32,7 @@ pipeline{
                     attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
-                    body: 'Fail'
+                    body: 'Fail',
                     from: 'petherjason@gmail.com')
             }
         }
@@ -55,7 +55,7 @@ pipeline{
                     attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
-                    body: 'Successful'
+                    body: 'Successful',
                     from: 'petherjason@gmail.com')
             }
                 
@@ -65,7 +65,7 @@ pipeline{
                     attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
-                    body: 'Fail'
+                    body: 'Fail',
                     from: 'petherjason@gmail.com')
             }
         }
