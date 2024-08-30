@@ -19,7 +19,7 @@ pipeline{
         post{
             always{
                    echo "send test email"
-                   emailext attachLog: true, body: '', subject: 'Jenkins Success', to: 'jpether@deakin.edu.au'
+                   emailext attachLog: true, body: 'TEST', subject: 'Jenkins Success', to: 'jpether@deakin.edu.au'
                 
             }
             failure{
