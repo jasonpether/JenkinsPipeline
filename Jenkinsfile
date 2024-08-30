@@ -19,7 +19,7 @@ pipeline{
         post{
             success{
                     emailext(
-                    attachLog: true
+                    attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
                     body: 'Successful'
@@ -29,7 +29,7 @@ pipeline{
             }
             failure{
              emailext(
-                    attachLog: true
+                    attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
                     body: 'Fail'
@@ -52,7 +52,7 @@ pipeline{
      post{
             success{
                     emailext(
-                    attachLog: true
+                    attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
                     body: 'Successful'
@@ -62,7 +62,7 @@ pipeline{
             }
             failure{
              emailext(
-                    attachLog: true
+                    attachLog: true,
                     to:'petherjason@gmail.com',
                     subject: 'Jenkins Build',
                     body: 'Fail'
