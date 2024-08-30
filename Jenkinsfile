@@ -17,7 +17,7 @@ pipeline{
             echo "use Selenium to test integration"
             }
         post{
-            success{
+            always{
                    echo "send test email"
                    emailext(
                         to:"petherjason@gmail.com",
