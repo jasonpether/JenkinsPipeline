@@ -15,7 +15,8 @@ pipeline {
                 echo "integration tests"
                 echo "use Selenium to test integration"
             }
-            post {
+        }
+         post {
                 success {
                     emailext(
                         attachLog: true,
@@ -35,7 +36,6 @@ pipeline {
                     )
                 }
             }
-        }
         
         stage('Code Quality Check') {
             steps {
