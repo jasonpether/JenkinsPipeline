@@ -4,19 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "building stage using build automation tool Maven"
+                echo "Building stage using build automation tool Maven"
             }
         }
        
         stage('Test') {
             steps {
-                echo "unit tests"
-                echo "use JUnit Jenkins plugin to do unit testing (assumption code is testing Java)"
-                echo "integration tests"
-                echo "use Selenium to test integration"
+                echo "Unit tests"
+                echo "Use JUnit Jenkins plugin for unit testing (assuming code is Java)"
+                echo "Integration tests"
+                echo "Use Selenium for integration testing"
             }
-        }
-         post {
+            post {
                 success {
                     emailext(
                         attachLog: true,
@@ -36,16 +35,17 @@ pipeline {
                     )
                 }
             }
-        
+        }
+         
         stage('Code Quality Check') {
             steps {
-                echo "Check the quality of the Code using PMD"
+                echo "Check the quality of the code using PMD"
             }
         }
 
         stage('Security Scan') {
             steps {
-                echo "run second code scan using SonarQube"
+                echo "Run security scan using SonarQube"
             }
             post {
                 success {
@@ -69,15 +69,15 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Deploy to Staging') {
             steps {
-                echo "deploy the application to staging server's AWS EC2 Instance"
+                echo "Deploy the application to staging server's AWS EC2 Instance"
             }
         }
 
-        stage('Approval') {
-            steps {
-                echo "use Selenium to test integration"
+        stage('Approval'){
+        steps{
+            echo "use Selenium to test integration"
             }
         }
 
