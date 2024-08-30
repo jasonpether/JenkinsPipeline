@@ -19,16 +19,15 @@ pipeline{
         post{
             always{
                    echo "send test email"
-                   emailext(attachLog: true, body: 'TEST', subject: 'Jenkins Success', to: 'jpether@deakin.edu.au')
+                   emailext(attachLog: true, body: 'TEST', subject: 'Jenkins Success', to: 'petherjason@gmail.com')
                 
             }
             failure{
                 emailext(
-                    to:"petherjason@gmail.com",
-                    subject: "Jenkins Build",
-                    body: "Build Failed",
-                    attachLog: true
-                )
+                    to:'petherjason@gmail.com',
+                    subject: 'Jenkins Build',
+                    body: 'Build Failed',
+                    attachLog: true)
             }
         }
 
@@ -54,11 +53,10 @@ pipeline{
             }
             failure{
                 emailext(
-                to:"petherjason@gmail.com",
-                subject: "Jenkins Build",
-                body: "Build Failed",
-                attachLog: true
-                )
+                to:'petherjason@gmail.com',
+                subject: 'Jenkins Build',
+                body: 'Build Failed',
+                attachLog: true)
             }
         }
         }
